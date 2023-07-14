@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <img src="{{ url_for('static', filename='images/sa.jpg') }}" alt="Description of the image">
+    <h1>{% block title %} Добро пожаловать на My Coin {% endblock %}</h1>
+    <h2></h2>
+    <h3> Здесь собраны самые популярные виды криптовалют </h3>
+    <h5>Вот что об этом гласит википедия:
+        Цифровая (электронная) валюта — электронные деньги, которые используются как альтернативная или дополнительная валюта. Чаще всего их стоимость привязана к национальным валютам, но есть и другие базы для обмена. Привязка может быть к драгоценным металлам (E-gold, WebMoney Gold — WMG), также встречается плавающий валютный курс (bitcoin и другие криптовалюты). О планах по выпуску своих национальных цифровых валют сообщали правительства или центробанки Китая, Японии, Эквадора, Нидерландов, Казахстана, России.
+
+        
+    </h5>
+    {% for post in posts %}
+        <a href="{{ url_for('post', post_id=post['id']) }}">
+            <img src="{{ post['logo'] }}" alt="Description of the image">
+            <h2>{{ post['title'] }}    Подробнее </h2>
+            
+        </a>
+        <span class="badge-pill badge-primary">Создано {{ post['created'] }}</span>
+        <a href="{{ url_for('edit', id=post['id']) }}">
+            <span class="badge badge-warning">Редактировать</span>
+            
+        </a>
+        <hr>
+    {% endfor %}
+{% endblock %}

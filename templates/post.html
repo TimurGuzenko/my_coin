@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <img src="{{ url_for('static', filename='images/7.png') }}" alt="Description of the image">
+    <h1>{% block title %} {{ post['title']}}  {% endblock %}</h1>
+    <img src="{{ post['logo'] }}" alt="Description of the image">
+    <p><h2> Текущий курс: </h2></p>
+    <p><h3> {{ rub_price }} рублей за одну монету</h3></p>
+    <p><h3> {{ usd_price }} долларов США за одну монету</h3></p>
+    <p><h3>{{ eur_price }} евро за одну монету</h3></p>
+    <span class="badge badge-primary">Создано {{ post['created']}}</span> 
+    {% for paragraph in post['content'].split('\n') %}
+        <p>{{ paragraph }}</p>
+    {% endfor %}
+    
+{% endblock %}
